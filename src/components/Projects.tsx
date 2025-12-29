@@ -1,32 +1,32 @@
-export default function Gallery() {
-  const projects = [
-    {
-      title: "Artist Portfolio",
-      category: "Personal",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuDNjWAdBsAw-nmxge_dbgWVbbrUQbsZvPkuNfrLYnpv_y2WnQ0W0BpASjFXgZ4SMfp8m4YBjgkSEV5Ow-OsqTLLlXjdWw7eMu6m32pDbBTehZ7Pf0kQ7yuVdANOn7O4ioHhbcFLiYdhviCkC1dmmZNCo0nzOcLXA2KXljzCE4IBrVgnDaP7zDnM9XwDRjvclhABBqU2YCTn5YbTtglpYiIQ9s59fRUYuxUTpfdJGdGii4VswQRq_BiemCrnH6sJvo2McLoqmuwGlN0H",
-    },
-    {
-      title: "Eco Brand Story",
-      category: "Business",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuBLtzrNErhsonEt9WzSFTCBTwUDHktPumbdTyHZ9pwBKTLhRMss6ktL4kB7nsqe7QmJv6MgSZJjQyDyJ_ARvpNO4t183fbWRr92OivT1NwgwTQF-bx07fVkRvDrvlQGs6eQXdwzOZst7AaMM5ixyakrBEPBkbSwCkz4UHZhYl_EdzJZysc703FPo0psUpzQq0N8n9p2akPHtIQXpe4j-3Gq_Fv1qDDSal50BR-G8npNeeFJKhWcDClkefQCICgaY9EFpQ9jkVr1Ii7X",
-      offset: true,
-    },
-    {
-      title: "Minimal Blog",
-      category: "Archive",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAEfiPrI4NwU9wsgo5ehqSVngC6Uh7-UyxXxWsmkhf37GuA82CWnhoqKMHw53w8ZodsLW6SQWja9SEr1gUaL0Mjvf63E5Rd9aJXrXK3EpZDrq6m3VBRN43RppWozf2tC-04OLTAe-x-Eo5LZPW_WZb7eDOM9DMmlwnfva_fcE4i0LaJ2cnbo2lyliDIk2R4rj-H8EVK3jKHWJT6Tezs6Y2ejLaL4bm2eqYPjxDwe2b2B1Oc_gkAHG9Kh0UaVT-Eb_HHwbLM-vp8QCsD",
-    },
-    {
-      title: "Event Landing",
-      category: "Promotion",
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCH6sBHogOQFyS1_wfnCgCwuS7B_Jasc84jGMjPFcv8dcCxBfXhA5EBbN-WfkPK5lNH01t7XWaA-yBUzyxhbIJ0VDf21gYIB9B3cYljGK6_d-0-a8Axlw-0FWtvpV1YFvsY-gQ1vyKlibYjfk9IYPVByJb94dlfF6L6Sm1DpK8dCW4E8kSk4pXhtoWNbqLQj7I2FYGq0o9bgi2pHrJSJQrwIbYb_Kn2ha0vm8Mfu5AsWC-2sFYz7ScQx_5px4t2mX2vNV5G_87S3JDf",
-      offset: true,
-    },
-  ];
+"use client";
+
+import { useProjects } from "@/hooks/queries/useProjects";
+import { getImageUrl } from "@/lib/image-url";
+
+export default function Projects() {
+  const { data, isLoading, error } = useProjects();
+
+  if (isLoading) {
+    return (
+      <section className="py-24 px-6 bg-white dark:bg-[#141414]" id="gallery">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center text-gray-500">로딩 중...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-24 px-6 bg-white dark:bg-[#141414]" id="gallery">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center text-red-500">프로젝트를 불러오는 중 오류가 발생했습니다.</div>
+        </div>
+      </section>
+    );
+  }
+
+  const projects = data?.projects || [];
 
   return (
     <section className="py-24 px-6 bg-white dark:bg-[#141414]" id="gallery">
@@ -47,9 +47,12 @@ export default function Gallery() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className={`group cursor-pointer ${project.offset ? "md:mt-16" : ""}`}
+            <a
+              key={project.id}
+              href={project.projectUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group cursor-pointer block ${index % 2 === 1 ? "md:mt-16" : ""}`}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-gray-100 dark:border-gray-800 shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                 <div className="absolute top-0 w-full h-6 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center gap-1.5 px-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -60,7 +63,7 @@ export default function Gallery() {
                 <img
                   alt={project.title}
                   className="w-full h-full object-cover transition duration-1000 group-hover:scale-105"
-                  src={project.image}
+                  src={getImageUrl(project.imgUrl)}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
               </div>
@@ -75,7 +78,7 @@ export default function Gallery() {
                   arrow_outward
                 </span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

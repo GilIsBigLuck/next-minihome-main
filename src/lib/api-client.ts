@@ -1,5 +1,7 @@
 // 클라이언트 측에서는 Next.js API Route를 통해 프록시
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "/api";
+import { env } from "@/env";
+
+const API_BASE_URL = env.NEXT_PUBLIC_API_URL;
 
 export const apiClient = {
   async get<T>(endpoint: string): Promise<T> {

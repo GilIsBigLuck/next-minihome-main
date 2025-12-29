@@ -13,10 +13,10 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
 
   const menuItems = [
     { label: "Home", labelKo: "홈", href: "#", number: "01" },
-    { label: "About", labelKo: "소개", href: "#about", number: "02" },
-    { label: "Gallery", labelKo: "갤러리", href: "#gallery", number: "03" },
-    { label: "Templates", labelKo: "템플릿", href: "#templates", number: "04" },
-    { label: "Contact", labelKo: "문의", href: "#contact", number: "05" },
+    // { label: "About", labelKo: "소개", href: "#about", number: "02" },
+    { label: "Gallery", labelKo: "갤러리", href: "#gallery", number: "02" },
+    { label: "Templates", labelKo: "템플릿", href: "#templates", number: "03" },
+    { label: "Contact", labelKo: "문의", href: "#contact", number: "04" },
   ];
 
   if (!isOpen) return null;

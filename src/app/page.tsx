@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
-import Gallery from "@/components/Gallery";
+import Projects from "@/components/Projects";
 import Templates from "@/components/Templates";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -10,7 +10,7 @@ export default function Home() {
     <main>
       <Navigation />
       <Header />
-      <Gallery />
+      <Projects />
       <Templates />
       <Contact />
       <Footer />

@@ -5,3 +5,20 @@ export interface HealthResponse {
   timestamp: string;
 }
 
+// Projects API Response
+export interface Project {
+  id: number;
+  category: string;
+  title: string;
+  desc: string;
+  imgUrl: string;
+  projectUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProjectsResponse {
+  projects: Project[];
+  count: number;
+}
+

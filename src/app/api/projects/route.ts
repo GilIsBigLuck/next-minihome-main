@@ -3,7 +3,7 @@ import { env } from "@/env";
 
 export async function GET() {
   try {
-    const response = await fetch(`${env.API_URL}/api/health`, {
+    const response = await fetch(`${env.API_URL}/api/projects`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export async function GET() {
 
     if (!response.ok) {
       return NextResponse.json(
-        { error: "Failed to fetch health status" },
+        { error: "Failed to fetch projects" },
         { status: response.status }
       );
     }
@@ -22,7 +22,7 @@ export async function GET() {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Health API Error:", error);
+    console.error("Projects API Error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
