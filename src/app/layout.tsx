@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
+import DialogProvider from "@/providers/DialogProvider";
 import HealthMonitor from "@/components/HealthMonitor";
 import FontLoader from "@/components/FontLoader";
 
@@ -19,8 +20,10 @@ export default function RootLayout({
       <body className="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-500 antialiased selection:bg-gray-200 dark:selection:bg-gray-800">
         <FontLoader />
         <QueryProvider>
-          <HealthMonitor />
-          {children}
+          <DialogProvider>
+            <HealthMonitor />
+            {children}
+          </DialogProvider>
         </QueryProvider>
       </body>
     </html>

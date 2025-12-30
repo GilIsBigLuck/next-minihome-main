@@ -19,3 +19,4 @@ export function getImageUrl(imgUrl: string): string {
   return `${appUrl}${imagePath}`;
 }
 
+
