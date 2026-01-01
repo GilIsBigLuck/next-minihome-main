@@ -15,6 +15,8 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_APP_URL: z.string().url().default("https://minihome.page"),
     NEXT_PUBLIC_API_URL: z.string().url().optional().default("/api"),
+    NEXT_PUBLIC_RESEND_API_KEY: z.string().min(1).optional(),
+    NEXT_PUBLIC_R2_URL: z.string().url().optional(),
   },
   /**
    * 런타임에서 접근 가능한 환경 변수
@@ -24,6 +26,8 @@ export const env = createEnv({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_RESEND_API_KEY: process.env.NEXT_PUBLIC_RESEND_API_KEY,
+    NEXT_PUBLIC_R2_URL: process.env.NEXT_PUBLIC_R2_URL,
   },
   /**
    * 빌드 타임에 환경 변수 검증

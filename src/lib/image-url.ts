@@ -13,7 +13,14 @@ export function getImageUrl(imgUrl: string): string {
   }
 
   // 상대 경로인 경우 앱 URL을 붙여서 반환
-  const appUrl = env.NEXT_PUBLIC_APP_URL.replace(/\/$/, ""); // 마지막 슬래시 제거
+  const r2Url = env.NEXT_PUBLIC_R2_URL;
+  
+  // R2 URL이 설정되지 않은 경우 원본 URL 반환
+  if (!r2Url) {
+    return imgUrl;
+  }
+  
+  const appUrl = r2Url.replace(/\/$/, ""); // 마지막 슬래시 제거
   const imagePath = imgUrl.startsWith("/") ? imgUrl : `/${imgUrl}`; // 슬래시가 없으면 추가
 
   return `${appUrl}${imagePath}`;
