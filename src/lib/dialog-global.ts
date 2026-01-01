@@ -14,11 +14,11 @@ let globalShowAlert: ((options: {
 }) => Promise<void>) | null = null;
 
 export function setGlobalAlert(
-  showAlert: (options: {
+  showAlert: ((options: {
     message: string;
     title?: string;
     type?: "info" | "success" | "warning" | "error";
-  }) => Promise<void>
+  }) => Promise<void>) | null
 ) {
   globalShowAlert = showAlert;
 }
@@ -50,11 +50,11 @@ let globalShowConfirm: ((options: {
 }) => Promise<boolean>) | null = null;
 
 export function setGlobalConfirm(
-  showConfirm: (options: {
+  showConfirm: ((options: {
     title?: string;
     message: string;
     type?: "info" | "success" | "warning" | "error";
-  }) => Promise<boolean>
+  }) => Promise<boolean>) | null
 ) {
   globalShowConfirm = showConfirm;
 }

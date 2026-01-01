@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { env } from "@/env";
 
-const resend = new Resend(env.RESEND_API_KEY);
+const resend = env.RESEND_API_KEY ? new Resend(env.RESEND_API_KEY) : null;
 
 export async function POST(request: Request) {
   try {
@@ -34,6 +34,14 @@ export async function POST(request: Request) {
     };
 
     const inquiryType = typeMap[type] || type;
+
+    // Resend API 키 확인
+    if (!resend || !env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: "이메일 서비스가 설정되지 않았습니다." },
+        { status: 500 }
+      );
+    }
 
     // Resend를 통해 이메일 전송
     const { data, error } = await resend.emails.send({

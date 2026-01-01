@@ -7,7 +7,7 @@ export const env = createEnv({
    */
   server: {
     API_URL: z.string().url().default("https://api.minihome.page"),
-    RESEND_API_KEY: z.string().min(1),
+    RESEND_API_KEY: z.string().min(1).optional(),
   },
   /**
    * 클라이언트 측에서 접근 가능한 환경 변수 (NEXT_PUBLIC_ 접두사 필요)
@@ -30,5 +30,4 @@ export const env = createEnv({
    */
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });
-
 
