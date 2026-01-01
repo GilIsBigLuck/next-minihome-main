@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { env } from "@/env";
 
+export const runtime = 'edge';
+
 export async function GET() {
   try {
     const response = await fetch(`${env.API_URL}/api/health`, {

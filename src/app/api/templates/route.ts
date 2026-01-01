@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const runtime = 'edge';
+
 const API_BASE_URL = process.env.API_URL || "https://api.minihome.page";
 
 export async function GET() {
