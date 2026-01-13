@@ -26,7 +26,8 @@ export default function Projects() {
     );
   }
 
-  const projects = data?.projects || [];
+  // API_SPEC: data.data.projects 형식으로 응답
+  const projects = data?.data?.projects || [];
 
   return (
     <section className="py-24 px-6 bg-white dark:bg-[#141414]" id="gallery">
@@ -42,14 +43,14 @@ export default function Projects() {
           </div>
           <p className="text-sm text-gray-500 max-w-md text-right md:text-left">
             다양한 라이프스타일과 취향을 반영한 웹사이트 작업물입니다.<br />
-            각기 다른 개성을 담은 미니홈의 포트폴리오를 확인해보세요.
+            각기 다른 개성을 담은 mini의 포트폴리오를 확인해보세요.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {projects.map((project, index) => (
             <a
               key={project.id}
-              href={project.projectUrl}
+              href={project.projectUrl || "#"}
               target="_blank"
               rel="noopener noreferrer"
               className={`group cursor-pointer block ${index % 2 === 1 ? "md:mt-16" : ""}`}
@@ -63,7 +64,7 @@ export default function Projects() {
                 <img
                   alt={project.title}
                   className="w-full h-full object-cover transition duration-1000 group-hover:scale-105"
-                  src={getImageUrl(project.imgUrl)}
+                  src={getImageUrl(project.imgUrl || "")}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
               </div>

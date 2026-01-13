@@ -35,17 +35,9 @@ export default function Header() {
           </h2>
           <p className="text-gray-500 dark:text-gray-400 leading-7 font-light text-sm md:text-base">
             복잡한 것은 덜어내고 본질만 남긴 미니멀 웹사이트.<br />
-            TOFT의 감성을 담아, 오직 당신만을 위한 디지털 공간을 설계합니다.<br />
-            1인 웹 에이전시 MINI home에서 가장 사적인 이야기를 시작하세요.
+            오직 당신만을 위한 디지털 공간을 설계합니다.<br />
+            1인 웹 에이전시 mini에서 당신을 소개하세요.
           </p>
-          <div className="pt-8">
-            <a
-              className="inline-block border-b border-gray-800 dark:border-white pb-1 text-sm tracking-widest hover:opacity-50 transition-opacity"
-              href="#gallery"
-            >
-              VIEW PROJECTS
-            </a>
-          </div>
         </div>
       </div>
     </header>

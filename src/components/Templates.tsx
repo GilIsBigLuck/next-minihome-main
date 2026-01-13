@@ -64,7 +64,8 @@ export default function Templates() {
     );
   }
 
-  const templates = data?.templates || [];
+  // API_SPEC: data.data.templates 형식으로 응답
+  const templates = data?.data?.templates || [];
 
   return (
     <section className="py-24 px-6 bg-background-light dark:bg-background-dark" id="templates">
@@ -83,19 +84,20 @@ export default function Templates() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {templates.map((template, index) => {
             const hoverEffect = getHoverEffect(index);
-            const badgeColor = getBadgeColor(template.badge);
-            const badgeText = template.badge?.[0]?.replace(/'/g, "").toUpperCase() || "";
+            const badge = template.badge || [];
+            const badgeColor = getBadgeColor(badge);
+            const badgeText = badge[0]?.replace(/'/g, "").toUpperCase() || "";
 
             return (
               <Link
                 key={template.id}
-                href={template.projectUrl}
+                href={template.projectUrl || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col group cursor-pointer"
               >
                 <div className="w-full aspect-square rounded-2xl bg-white dark:bg-card-dark flex items-center justify-center mb-6 shadow-sm group-hover:shadow-lg transition-all duration-300 relative overflow-hidden border border-gray-100 dark:border-gray-800">
-                  {template.badge && template.badge.length > 0 && (
+                  {badge.length > 0 && (
                     <div
                       className={`absolute top-4 left-4 ${badgeColor} text-[10px] font-bold px-2 py-1 rounded-full z-10`}
                     >
@@ -105,7 +107,7 @@ export default function Templates() {
                   <img
                     alt={template.title}
                     className={`w-1/2 h-1/2 object-contain drop-shadow-md transform group-hover:${hoverEffect} transition-transform duration-500`}
-                    src={getImageUrl(template.imgUrl)}
+                    src={getImageUrl(template.imgUrl || "")}
                   />
                 </div>
                 <div className="text-left px-2">

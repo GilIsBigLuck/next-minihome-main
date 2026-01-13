@@ -21,10 +21,11 @@ export default function HealthStatus() {
     );
   }
 
+  // API_SPEC: data.data.status, data.message 형식으로 응답
   return (
     <div className="text-sm text-gray-500 dark:text-gray-400">
       <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-      서버 상태: {data?.status} ({data?.message})
+      서버 상태: {data?.data?.status} ({data?.message})
     </div>
   );
 }

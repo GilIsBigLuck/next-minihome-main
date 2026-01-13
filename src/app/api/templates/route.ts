@@ -1,23 +1,37 @@
 import { NextResponse } from "next/server";
+import { env } from "@/env";
 
 export const runtime = 'edge';
 
-const API_BASE_URL = process.env.API_URL || "https://api.minihome.page";
-
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/templates`, {
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get("category");
+
+    // API_SPEC: GET /api/internal/templates
+    const url = new URL(`${env.API_URL}/api/internal/templates`);
+    if (category) {
+      url.searchParams.set("category", category);
+    }
+
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    // Internal API는 X-API-Key 헤더 필요 (개발 환경에서는 optional)
+    if (env.INTERNAL_API_KEY) {
+      headers["X-API-Key"] = env.INTERNAL_API_KEY;
+    }
+
+    const response = await fetch(url.toString(), {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // 서버 측에서는 CORS 제한이 없음
-      cache: "no-store", // 항상 최신 데이터
+      headers,
+      cache: "no-store",
     });
 
     if (!response.ok) {
       return NextResponse.json(
-        { error: "Failed to fetch templates" },
+        { code: response.status, message: "Failed to fetch templates", data: null },
         { status: response.status }
       );
     }
@@ -27,7 +41,7 @@ export async function GET() {
   } catch (error) {
     console.error("Templates API Error:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { code: 500, message: "Internal server error", data: null },
       { status: 500 }
     );
   }

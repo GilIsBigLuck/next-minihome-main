@@ -7,6 +7,7 @@ export const env = createEnv({
    */
   server: {
     API_URL: z.string().url().default("https://api.minihome.page"),
+    INTERNAL_API_KEY: z.string().min(1).optional(),
     RESEND_API_KEY: z.string().min(1).optional(),
   },
   /**
@@ -23,6 +24,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     API_URL: process.env.API_URL,
+    INTERNAL_API_KEY: process.env.INTERNAL_API_KEY,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,

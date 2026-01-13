@@ -5,18 +5,18 @@ export const runtime = 'edge';
 
 export async function GET() {
   try {
-    const response = await fetch(`${env.API_URL}/api/health`, {
+    // API_SPEC: GET /api/public/health
+    const response = await fetch(`${env.API_URL}/api/public/health`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      // 서버 측에서는 CORS 제한이 없음
-      cache: "no-store", // 항상 최신 데이터
+      cache: "no-store",
     });
 
     if (!response.ok) {
       return NextResponse.json(
-        { error: "Failed to fetch health status" },
+        { code: response.status, message: "Failed to fetch health status", data: null },
         { status: response.status }
       );
     }
@@ -26,7 +26,7 @@ export async function GET() {
   } catch (error) {
     console.error("Health API Error:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { code: 500, message: "Internal server error", data: null },
       { status: 500 }
     );
   }
