@@ -47,7 +47,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
       {/* Main Menu Overlay */}
       <div className="fixed inset-0 z-50 flex flex-col bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl animate-fadeIn">
         {/* Header: Logo & Close Button */}
-        <div className="w-full px-6 md:px-12 py-6 flex items-center justify-between mx-auto box-border border-b border-transparent dark:border-white/5">
+        <div className="w-full px-6 tablet:px-12 py-6 flex items-center justify-between mx-auto box-border border-b border-transparent dark:border-white/5">
           {/* Brand */}
           <div className="flex items-center gap-3 text-slate-900 dark:text-white opacity-0 animate-[fadeIn_0.5s_0.2s_forwards]">
             <div className="size-8 flex items-center justify-center text-primary">
@@ -79,11 +79,11 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
         {/* Center: Navigation Links */}
         <div className="flex-1 flex items-center justify-center w-full overflow-y-auto py-10">
           <nav className="flex flex-col items-center w-full max-w-4xl px-4">
-            <ul className="flex flex-col items-center lg:items-start gap-2 w-full">
+            <ul className="flex flex-col items-center desktop:items-start gap-2 w-full">
               {menuItems.map((item, index) => (
                 <li
                   key={index}
-                  className="group w-full flex justify-center lg:justify-start opacity-0 animate-[slideUp_0.5s_0.1s_forwards]"
+                  className="group w-full flex justify-center desktop:justify-start opacity-0 animate-[slideUp_0.5s_0.1s_forwards]"
                   style={{
                     animationDelay: `${(index + 1) * 0.1}s`,
                   }}
@@ -96,10 +96,10 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                     <span className="text-sm font-bold text-primary opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                       {item.number}
                     </span>
-                    <span className="text-5xl md:text-7xl lg:text-8xl font-light text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors tracking-tight">
+                    <span className="text-5xl tablet:text-7xl desktop:text-8xl font-light text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors tracking-tight">
                       {item.label}
                     </span>
-                    <span className="text-xl md:text-2xl font-normal text-slate-400 dark:text-slate-600 group-hover:text-primary transition-colors duration-300">
+                    <span className="text-xl tablet:text-2xl font-normal text-slate-400 dark:text-slate-600 group-hover:text-primary transition-colors duration-300">
                       {item.labelKo}
                     </span>
                   </Link>
@@ -110,10 +110,10 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
         </div>
 
         {/* Footer: Utilities & Info */}
-        <div className="w-full px-6 md:px-12 py-8 border-t border-slate-200 dark:border-white/10 opacity-0 animate-[fadeIn_0.5s_0.6s_forwards]">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mx-auto">
+        <div className="w-full px-6 tablet:px-12 py-8 border-t border-slate-200 dark:border-white/10 opacity-0 animate-[fadeIn_0.5s_0.6s_forwards]">
+          <div className="flex flex-col tablet:flex-row items-center justify-between gap-6 mx-auto">
             {/* Toggles Area */}
-            <div className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-8">
+            <div className="flex flex-wrap justify-center tablet:justify-start items-center gap-4 tablet:gap-8">
               {/* Language Switcher */}
               <div className="flex items-center gap-1">
                 <span className="material-symbols-outlined text-slate-400 text-xl mr-2">
@@ -129,7 +129,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                 </div>
               </div>
               {/* Divider */}
-              <div className="hidden md:block w-px h-6 bg-slate-300 dark:bg-slate-700"></div>
+              <div className="hidden tablet:block w-px h-6 bg-slate-300 dark:bg-slate-700"></div>
               {/* Theme Switcher */}
               <button
                 onClick={toggleDarkMode}
@@ -165,7 +165,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
               </button>
             </div>
             {/* Contact & Copyright */}
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm text-slate-500 dark:text-slate-400">
+            <div className="flex flex-col tablet:flex-row items-center gap-4 tablet:gap-8 text-sm text-slate-500 dark:text-slate-400">
               <div className="flex gap-6">
                 <a
                   href="mailto:hello@minihome.kr"

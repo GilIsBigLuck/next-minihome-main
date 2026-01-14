@@ -32,7 +32,7 @@ export default function Templates() {
             <span className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-2 block">
               Choose Your Style
             </span>
-            <h2 className="text-3xl md:text-5xl font-black font-display tracking-tight mb-4">
+            <h2 className="text-3xl tablet:text-5xl font-black font-display tracking-tight mb-4">
               DESIGN <span className="font-light">Templates</span>
             </h2>
             <p className="text-gray-500 dark:text-gray-400 font-light">
@@ -52,7 +52,7 @@ export default function Templates() {
             <span className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-2 block">
               Choose Your Style
             </span>
-            <h2 className="text-3xl md:text-5xl font-black font-display tracking-tight mb-4">
+            <h2 className="text-3xl tablet:text-5xl font-black font-display tracking-tight mb-4">
               DESIGN <span className="font-light">Templates</span>
             </h2>
             <p className="text-gray-500 dark:text-gray-400 font-light">
@@ -74,14 +74,14 @@ export default function Templates() {
           <span className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-2 block">
             Choose Your Style
           </span>
-          <h2 className="text-3xl md:text-5xl font-black font-display tracking-tight mb-4">
+          <h2 className="text-3xl tablet:text-5xl font-black font-display tracking-tight mb-4">
             DESIGN <span className="font-light">Templates</span>
           </h2>
           <p className="text-gray-500 dark:text-gray-400 font-light">
             가장 빠르고 아름답게 시작하는 방법. 취향에 맞는 템플릿을 선택하세요.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 mobile:grid-cols-2 desktop:grid-cols-4 gap-8">
           {templates.map((template, index) => {
             const hoverEffect = getHoverEffect(index);
             const badge = template.badge || [];

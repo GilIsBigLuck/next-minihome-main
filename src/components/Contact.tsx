@@ -92,7 +92,7 @@ export default function Contact() {
           </p>
         </div>
         <form className="space-y-10" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 tablet:grid-cols-2 gap-10">
             <div className="relative">
               <input
                 className="peer w-full border-0 border-b border-gray-300 dark:border-gray-700 bg-transparent py-2.5 text-gray-900 dark:text-white focus:border-black dark:focus:border-white focus:ring-0 placeholder-transparent transition-colors"

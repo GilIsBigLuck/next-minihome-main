@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="py-20 bg-background-light dark:bg-background-dark text-center border-t border-gray-200 dark:border-gray-800">
       <div className="mb-8">
-        <h2 className="font-display text-3xl md:text-5xl tracking-tighter text-primary dark:text-white select-none">
+        <h2 className="font-display text-3xl tablet:text-5xl tracking-tighter text-primary dark:text-white select-none">
           <span className="font-black">MINI</span>{" "}
           <span className="font-light">home</span>
         </h2>
@@ -18,7 +18,7 @@ export default function Footer() {
           Instagram
         </a>
       </div>
-      <p className="text-[10px] md:text-xs text-gray-400 dark:text-gray-500 tracking-widest font-mono">
+      <p className="text-[10px] tablet:text-xs text-gray-400 dark:text-gray-500 tracking-widest font-mono">
         © MINI home Agency. ALL RIGHTS RESERVED.
       </p>
     </footer>
