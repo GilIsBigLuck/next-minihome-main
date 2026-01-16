@@ -97,8 +97,10 @@ export default function Contact() {
               <input
                 className="peer w-full border-0 border-b border-gray-300 dark:border-gray-700 bg-transparent py-2.5 text-gray-900 dark:text-white focus:border-black dark:focus:border-white focus:ring-0 placeholder-transparent transition-colors"
                 id="name"
+                name="name"
                 placeholder="Name"
                 type="text"
+                autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -114,8 +116,10 @@ export default function Contact() {
               <input
                 className="peer w-full border-0 border-b border-gray-300 dark:border-gray-700 bg-transparent py-2.5 text-gray-900 dark:text-white focus:border-black dark:focus:border-white focus:ring-0 placeholder-transparent transition-colors"
                 id="email"
+                name="email"
                 placeholder="Email"
                 type="email"
+                autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -186,7 +190,7 @@ export default function Contact() {
           )}
           <div className="text-center pt-8">
             <button
-              className="group relative px-12 py-4 bg-primary dark:bg-white text-white dark:text-black rounded-full overflow-hidden transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative px-12 py-4 bg-primary dark:bg-white text-white dark:text-black rounded-full overflow-hidden transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary dark:focus-visible:ring-white focus:outline-none"
               type="submit"
               disabled={isSubmitting}
             >

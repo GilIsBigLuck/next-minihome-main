@@ -3,7 +3,6 @@ import "./globals.css";
 import QueryProvider from "@/providers/QueryProvider";
 import DialogProvider from "@/providers/DialogProvider";
 import HealthMonitor from "@/components/HealthMonitor";
-import FontLoader from "@/components/FontLoader";
 
 const SITE_URL = "https://minihome.page";
 const SITE_NAME = "MINI home";
@@ -72,9 +71,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="scroll-smooth">
+    <html lang="ko" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <meta name="color-scheme" content="light dark" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var darkMode = localStorage.getItem('darkMode');
+                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  var isDark = darkMode === 'true' || (darkMode === null && prefersDark);
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.style.colorScheme = 'dark';
+                  } else {
+                    document.documentElement.style.colorScheme = 'light';
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-500 antialiased selection:bg-gray-200 dark:selection:bg-gray-800">
-        <FontLoader />
         <QueryProvider>
           <DialogProvider>
             <HealthMonitor />

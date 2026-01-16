@@ -2,11 +2,11 @@ export default function Header() {
   return (
     <header className="relative w-full min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden pt-20">
       <div
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100 dark:bg-blue-900/20 rounded-full artistic-blur -z-10 animate-pulse"
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100 dark:bg-blue-900/20 rounded-full artistic-blur -z-10 animate-pulse motion-reduce:animate-none"
         style={{ animationDuration: "4s" }}
       ></div>
       <div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-100 dark:bg-orange-900/20 rounded-full artistic-blur -z-10 animate-pulse"
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-orange-100 dark:bg-orange-900/20 rounded-full artistic-blur -z-10 animate-pulse motion-reduce:animate-none"
         style={{ animationDuration: "6s" }}
       ></div>
       <div className="max-w-5xl w-full text-center z-10 space-y-12">

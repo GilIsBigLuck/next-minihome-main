@@ -1,38 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export function useDarkMode() {
   const [isDark, setIsDark] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
+  // 마운트 시 DOM에서 현재 다크모드 상태 읽기
   useEffect(() => {
-    setMounted(true);
-    // Check if dark mode is set in localStorage or system preference
-    const darkMode = localStorage.getItem("darkMode");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
-    const shouldBeDark = darkMode === "true" || (darkMode === null && prefersDark);
-    setIsDark(shouldBeDark);
-    
-    if (shouldBeDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    const hasDarkClass = document.documentElement.classList.contains("dark");
+    setIsDark(hasDarkClass);
   }, []);
 
-  const toggleDarkMode = () => {
-    const newValue = !isDark;
-    setIsDark(newValue);
-    localStorage.setItem("darkMode", String(newValue));
-    
-    if (newValue) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
+  const toggleDarkMode = useCallback(() => {
+    setIsDark((prev) => {
+      const newValue = !prev;
+      localStorage.setItem("darkMode", String(newValue));
+
+      if (newValue) {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      } else {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+
+      return newValue;
+    });
+  }, []);
 
   return { isDark, toggleDarkMode };
 }

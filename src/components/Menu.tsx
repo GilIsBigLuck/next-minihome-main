@@ -45,11 +45,11 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
       </div>
 
       {/* Main Menu Overlay */}
-      <div className="fixed inset-0 z-50 flex flex-col bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl animate-fadeIn">
+      <div className="fixed inset-0 z-50 flex flex-col bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl animate-fadeIn motion-reduce:animate-none">
         {/* Header: Logo & Close Button */}
         <div className="w-full px-6 tablet:px-12 py-6 flex items-center justify-between mx-auto box-border border-b border-transparent dark:border-white/5">
           {/* Brand */}
-          <div className="flex items-center gap-3 text-slate-900 dark:text-white opacity-0 animate-[fadeIn_0.5s_0.2s_forwards]">
+          <div className="flex items-center gap-3 text-slate-900 dark:text-white opacity-0 animate-[fadeIn_0.5s_0.2s_forwards] motion-reduce:opacity-100 motion-reduce:animate-none">
             <div className="size-8 flex items-center justify-center text-primary">
               <svg
                 className="w-full h-full"
@@ -68,7 +68,8 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="group flex items-center justify-center size-12 rounded-lg border border-slate-200 dark:border-[#344465] bg-white dark:bg-[#1a2433] hover:bg-primary hover:border-primary dark:hover:bg-primary dark:hover:border-primary transition-all duration-300 cursor-pointer shadow-sm"
+            className="group flex items-center justify-center size-12 rounded-lg border border-slate-200 dark:border-[#344465] bg-white dark:bg-[#1a2433] hover:bg-primary hover:border-primary dark:hover:bg-primary dark:hover:border-primary transition-all duration-300 cursor-pointer shadow-sm focus-visible:ring-2 focus-visible:ring-primary focus:outline-none"
+            aria-label="메뉴 닫기"
           >
             <span className="material-symbols-outlined text-slate-900 dark:text-white text-2xl group-hover:text-white group-hover:rotate-90 transition-all duration-300">
               close
@@ -83,7 +84,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
               {menuItems.map((item, index) => (
                 <li
                   key={index}
-                  className="group w-full flex justify-center desktop:justify-start opacity-0 animate-[slideUp_0.5s_0.1s_forwards]"
+                  className="group w-full flex justify-center desktop:justify-start opacity-0 animate-[slideUp_0.5s_0.1s_forwards] motion-reduce:opacity-100 motion-reduce:animate-none"
                   style={{
                     animationDelay: `${(index + 1) * 0.1}s`,
                   }}
@@ -110,7 +111,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
         </div>
 
         {/* Footer: Utilities & Info */}
-        <div className="w-full px-6 tablet:px-12 py-8 border-t border-slate-200 dark:border-white/10 opacity-0 animate-[fadeIn_0.5s_0.6s_forwards]">
+        <div className="w-full px-6 tablet:px-12 py-8 border-t border-slate-200 dark:border-white/10 opacity-0 animate-[fadeIn_0.5s_0.6s_forwards] motion-reduce:opacity-100 motion-reduce:animate-none">
           <div className="flex flex-col tablet:flex-row items-center justify-between gap-6 mx-auto">
             {/* Toggles Area */}
             <div className="flex flex-wrap justify-center tablet:justify-start items-center gap-4 tablet:gap-8">
@@ -119,11 +120,19 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                 <span className="material-symbols-outlined text-slate-400 text-xl mr-2">
                   language
                 </span>
-                <div className="flex items-center bg-slate-100 dark:bg-[#1a2433] rounded-lg p-1 border border-slate-200 dark:border-[#344465]">
-                  <button className="px-4 py-1.5 rounded text-xs font-bold bg-white dark:bg-[#344465] text-primary shadow-sm transition-all">
+                <div className="flex items-center bg-slate-100 dark:bg-[#1a2433] rounded-lg p-1 border border-slate-200 dark:border-[#344465]" role="group" aria-label="언어 선택">
+                  <button
+                    className="px-4 py-1.5 rounded text-xs font-bold bg-white dark:bg-[#344465] text-primary shadow-sm transition-all focus-visible:ring-2 focus-visible:ring-primary focus:outline-none"
+                    aria-label="한국어 (현재 선택됨)"
+                    aria-pressed="true"
+                  >
                     KR
                   </button>
-                  <button className="px-4 py-1.5 rounded text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                  <button
+                    className="px-4 py-1.5 rounded text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-primary focus:outline-none"
+                    aria-label="English"
+                    aria-pressed="false"
+                  >
                     EN
                   </button>
                 </div>
@@ -133,7 +142,9 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
               {/* Theme Switcher */}
               <button
                 onClick={toggleDarkMode}
-                className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#1a2433] transition-colors group"
+                className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#1a2433] transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus:outline-none"
+                aria-label={isDark ? "라이트 모드로 전환" : "다크 모드로 전환"}
+                aria-pressed={isDark}
               >
                 <div className="relative size-5">
                   <span
